@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block content %}
+<form action='' method='POST'>
+  <label for='name'>Name</label>
+  <input name='name' type='text' value="{{ user }}"><br>
+  <a href="{{ url_for('modify') }}">Back</a>
+  <input type='submit'>
+</form>
+{% endblock content %}
