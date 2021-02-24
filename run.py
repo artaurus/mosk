@@ -3,7 +3,8 @@ from flask_mongoengine import MongoEngine
 from flask_mongoengine.wtf import model_form
 import json
 
-# convert from module to package to app factory
+# convert from module to package
+# convert from package to app factory
 
 app = Flask(__name__)
 
@@ -41,29 +42,29 @@ def add():
         return redirect(url_for('home'))
     return render_template('add.html', form=form)
 
+@app.route('/remove', methods=['GET', 'POST'])
+def remove():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        try:
+            User.objects(email=email).delete()
+        except:
+            pass
+        return redirect(url_for('home'))
+    return render_template('remove.html')
+
 # finish crud routes
 
-# @app.route('/remove', methods=['GET', 'POST'])
-# def remove():
-#     if request.method == 'POST':
-#         email = request.form.get('email')
-#         try:
-#             User.objects(email=email).delete()
-#         except:
-#             pass
-#         return redirect(url_for('home'))
-#     return render_template('remove.html')
+@app.route('/modify', methods=['GET', 'POST'])
+def modify():
+    if request.method == 'POST':
+        email = request.form.get('email')
 
-# @app.route('/modify', methods=['GET', 'POST'])
-# def modify():
-#     if request.method == 'POST':
-#         email = request.form.get('email')
-#
-#         if user:
-#             return redirect(url_for('modify_user', user=user['name']))
-#         else:
-#             return redirect(url_for('home'))
-#     return render_template('modify.html')
+        if user:
+            return redirect(url_for('modify_user', user=user['name']))
+        else:
+            return redirect(url_for('home'))
+    return render_template('modify.html')
 
 # @app.route('/modify/<string:user>', methods=['GET', 'POST'])
 # def modify_user(user):
