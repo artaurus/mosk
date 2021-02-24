@@ -2,10 +2,12 @@
 {% block content %}
 <span>Add</span>
 <form action='' method='POST'>
-  <label for='name'>Name</label>
-  <input name='name' type='text'><br>
-  <label for='email'>Email</label>
-  <input name='email' type='text'><br>
+  {{ form.csrf_token }}
+  {{ form.name.label }}
+  {{ form.name }}<br>
+  {{ form.email.label }}
+  {{ form.email }}<br>
+  {{ form.errors }}<br>
   <a href="{{ url_for('home') }}">Back</a>
   <input type='submit'>
 </form>
