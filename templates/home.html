@@ -5,7 +5,7 @@
   <span>{{ user.name }}</span>
   <span>{{ user.email }}</span><br>
 {% endfor %}
-<b><a href='add'>Add</a></b>
-<b><a href='remove'>Remove</a></b>
-<b><a href='modify'>Modify</a></b>
+<b><a href="{{ url_for('add') }}">Add</a></b>
+<b><a href="{{ url_for('remove') }}">Remove</a></b>
+<b><a href="{{ url_for('modify') }}">Modify</a></b>
 {% endblock content %}
