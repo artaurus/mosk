@@ -7,7 +7,9 @@
   {{ form.name }}<br>
   {{ form.email.label }}
   {{ form.email }}<br>
-  {{ form.errors }}<br>
+  {% if form.errors %}
+    {{ form.errors }}<br>
+  {% endif %}
   <a href="{{ url_for('home') }}">Back</a>
   <input type='submit'>
 </form>
