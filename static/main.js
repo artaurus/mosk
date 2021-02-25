@@ -1,13 +1,3 @@
-document.querySelectorAll('a').forEach(i => {
-  i.style.textDecoration = 'none';
-  i.style.color = '#000';
-  i.style.fontWeight = 'bold';
-});
-
-const submit = document.querySelector('.submit');
-if (submit) {
-  submit.style.display = 'none';
-}
 const search = document.getElementById('search');
 if (search) {
   search.addEventListener('mouseover', () => search.style.cursor = 'pointer');
