@@ -1,10 +1,18 @@
 {% extends 'layout.html' %}
 {% block content %}
 <h1>MOSK (Mongo + Flask)</h1>
-{% for user in users %}
-  <span>{{ user.name }}</span>
-  <span>{{ user.email }}</span><br>
-{% endfor %}
+<table>
+  <tr>
+    <th>User</th>
+    <th>Email</th>
+  </tr>
+  {% for user in users %}
+    <tr>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+    </tr>
+  {% endfor %}
+</table>
 <b><a href="{{ url_for('add') }}">Add</a></b>
 <b><a href="{{ url_for('remove') }}">Remove</a></b>
 <b><a href="{{ url_for('modify') }}">Modify</a></b>
