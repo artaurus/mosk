@@ -18,8 +18,11 @@ def home():
 def add():
     form = UserForm(request.form)
     if request.method == 'POST' and form.validate():
-        User(name=form.name.data, email=form.email.data).save()
-        return redirect(url_for('home'))
+        try:
+            User(name=form.name.data, email=form.email.data).save()
+            return redirect(url_for('home'))
+        except:
+            return redirect(url_for('add'))
     return render_template('add.html', form=form)
 
 @app.route('/remove', methods=['GET', 'POST'])
