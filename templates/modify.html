@@ -1,19 +1,19 @@
 {% extends 'layout.html' %}
 {% block content %}
-<span>Modify</span>
+<h2>Modify</h2>
 <form action='' method='POST'>
   {{ form.csrf_token }}
   <div class='search'>
     {{ form.email.label }}
     {{ form.email }}<br>
-    <a href="{{ url_for('home') }}">Back</a>
-    <a id='search'>Search</a>
+    <a href="{{ url_for('home') }}" class='btn'>Back</a>
+    <a id='search' class='btn'>Search</a>
   </div>
   <div class='submit'>
     {{ form.name.label }}
     {{ form.name }}<br>
-    <a href="{{ url_for('home') }}">Back</a>
-    <input type='submit'>
+    <a href="{{ url_for('modify') }}" class='btn'>Back</a>
+    <input type='submit' class='btn'>
   </div>
   {% if form.errors %}
     {{ form.errors }}

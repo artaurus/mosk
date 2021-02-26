@@ -13,7 +13,7 @@
     </tr>
   {% endfor %}
 </table>
-<b><a href="{{ url_for('add') }}">Add</a></b>
-<b><a href="{{ url_for('remove') }}">Remove</a></b>
-<b><a href="{{ url_for('modify') }}">Modify</a></b>
+<a href="{{ url_for('add') }}" class='btn'>Add</a>
+<a href="{{ url_for('remove') }}" class='btn'>Remove</a>
+<a href="{{ url_for('modify') }}" class='btn'>Modify</a>
 {% endblock content %}

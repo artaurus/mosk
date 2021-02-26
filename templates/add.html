@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-<span>Add</span>
+<h2>Add</h2>
 <form action='' method='POST'>
   {{ form.csrf_token }}
   {{ form.name.label }}
@@ -10,7 +10,7 @@
   {% if form.errors %}
     {{ form.errors }}<br>
   {% endif %}
-  <a href="{{ url_for('home') }}">Back</a>
-  <input type='submit'>
+  <a href="{{ url_for('home') }}" class='btn'>Back</a>
+  <input type='submit' class='btn'>
 </form>
 {% endblock content %}
