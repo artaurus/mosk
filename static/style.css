@@ -1,11 +1,40 @@
-* {
-  padding: 0.5rem 1rem;
+body {
+  margin: 2rem;
+  color: #000;
+  background-color: #fff;
 }
 
 a {
+  text-decoration: none;
+  color: inherit;
   font-weight: bold;
 }
 
 .submit {
   display: none;
+}
+
+table {
+  margin-bottom: 2rem;
+}
+
+th, td {
+  padding: 0.5rem 1rem;
+}
+
+input {
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.btn {
+  padding: 0.5rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  background-color: inherit;
+  border: none;
 }
