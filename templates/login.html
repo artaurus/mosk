@@ -1,18 +1,20 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 {% block content %}
 <h2>Login</h2>
 <form action='' method='POST'>
   {{ form.csrf_token }}
+
   <label>Email</label><br>
   {{ form.email }}<br>
+  {% for error in form.errors['email'] %}
+    {{ error }}<br>
+  {% endfor %}<br>
+
   <label>Password</label><br>
   {{ form.password }}<br>
-
-  {% if form.errors %}
-    {% for error in form.errors %}
-      {{ error }}<br>
-    {% endfor %}
-  {% endif %}
+  {% for error in form.errors['password'] %}
+    {{ error }}<br>
+  {% endfor %}<br>
 
   <a href="{{ url_for('home') }}" class='btn'>Back</a>
   <input type='submit' value='Login' class='btn'>
