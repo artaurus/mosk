@@ -2,16 +2,7 @@ body {
   margin: 2rem;
   color: #000;
   background-color: #fff;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  font-weight: bold;
-}
-
-.submit {
-  display: none;
+  font-family: Garamond;
 }
 
 table {
@@ -20,6 +11,12 @@ table {
 
 th, td {
   padding: 0.5rem 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
 }
 
 input {
@@ -31,10 +28,14 @@ input {
 
 .btn {
   padding: 0.5rem;
-  cursor: pointer;
   font-family: inherit;
   font-size: inherit;
   font-weight: bold;
   background-color: inherit;
   border: none;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
