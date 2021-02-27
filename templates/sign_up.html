@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 {% block content %}
 <h2>Sign Up</h2>
 <form action='' method='POST'>
@@ -8,19 +8,19 @@
   {{ form.name }}<br>
   {% for error in form.errors['name'] %}
     {{ error }}<br>
-  {% endfor %}
+  {% endfor %}<br>
 
   <label>Email</label><br>
   {{ form.email }}<br>
   {% for error in form.errors['email'] %}
     {{ error }}<br>
-  {% endfor %}
+  {% endfor %}<br>
 
   <label>Password</label><br>
   {{ form.password }}<br>
   {% for error in form.errors['password'] %}
     {{ error }}<br>
-  {% endfor %}
+  {% endfor %}<br>
 
   <a href="{{ url_for('home') }}" class='btn'>Back</a>
   <input type='submit' value='Sign Up' class='btn'>
