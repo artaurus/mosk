@@ -1,22 +1,22 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 {% block content %}
 <h2>Modify</h2>
 <form action='' method='POST'>
   {{ form.csrf_token }}
-  <div class='search'>
-    {{ form.email.label }}
-    {{ form.email }}<br>
-    <a href="{{ url_for('home') }}" class='btn'>Back</a>
-    <a id='search' class='btn'>Search</a>
-  </div>
-  <div class='submit'>
-    {{ form.name.label }}
-    {{ form.name }}<br>
-    <a href="{{ url_for('modify') }}" class='btn'>Back</a>
-    <input type='submit' class='btn'>
-  </div>
-  {% if form.errors %}
-    {{ form.errors }}
-  {% endif %}
+
+  <label>Name</label><br>
+  {{ form.name(value=log.get_user()['name']) }}<br>
+  {% for error in form.errors['name'] %}
+    {{ error }}<br>
+  {% endfor %}<br>
+
+  <label>Email</label><br>
+  {{ form.email(value=log.get_user()['email']) }}<br>
+  {% for error in form.errors['email'] %}
+    {{ error }}<br>
+  {% endfor %}<br>
+
+  <a href="{{ url_for('profile') }}" class='btn'>Back</a>
+  <input type='submit' value='Update' class='btn'>
 </form>
 {% endblock content %}
