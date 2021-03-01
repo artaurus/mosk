@@ -5,7 +5,7 @@ function delete_user() {
   headers.append('pragma', 'no-cache');
   headers.append('cache-control', 'no-cache');
 
-  fetch('static/user.json', {
+  fetch('static/js/user.json', {
     method: 'GET',
     headers: headers,
   })

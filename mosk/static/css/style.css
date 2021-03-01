@@ -33,6 +33,7 @@ input {
   font-weight: bold;
   background-color: inherit;
   border: none;
+  outline: none;
   cursor: pointer;
 }
 
