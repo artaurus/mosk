@@ -1,19 +1,21 @@
 from flask import redirect, request, url_for
 
 class LoginHandler:
+    # initialise with app instance?
     def __init__(self):
         self.reset_user()
 
+    # separate write function
     def set_user(self, user):
         if not self.status():
             del user.password
             self.user = user
-            with open('static/user.json', 'w') as file:
+            with open('mosk/static/js/user.json', 'w') as file:
                 file.write(user.to_json())
 
     def reset_user(self):
         self.user = {}
-        with open('static/user.json', 'w') as file:
+        with open('mosk/static/js/user.json', 'w') as file:
             file.write('{}')
 
     def get_user(self):
