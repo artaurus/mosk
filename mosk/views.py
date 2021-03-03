@@ -17,7 +17,7 @@ def home():
     # paginate queryset
     return render_template('home.html', users=User.objects, log=log)
 
-@app.route('/sign_up', methods=['GET', 'POST'])
+@app.route('/sign-up', methods=['GET', 'POST'])
 @log.access_denied
 def sign_up():
     form = signup_form(request.form)
@@ -40,7 +40,7 @@ def login():
         if user:
             log.authenticate(user, form.password.data)
             next = request.args.get('next')
-            if next and bool(re.search('[a-z]+_?[a-z]*', next)):
+            if next and bool(re.search('^[a-z]+(_?[a-z]+)*$', next)):
                 try:
                     url = url_for(next)
                 except BuildError:
