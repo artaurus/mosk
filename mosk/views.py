@@ -1,10 +1,11 @@
 from flask import Flask, render_template, redirect, request, url_for
 from flask_mongoengine.wtf import model_form
+from werkzeug.routing import BuildError
 from mongoengine.errors import NotUniqueError
-from werkzeug.security import generate_password_hash, check_password_hash
 from mosk import app, db, log
 from mosk.models import User
 from mosk.forms import SignUp, Login, ModifyProfile
+import re
 
 signup_form = model_form(SignUp, field_args={'password': {'password': True}})
 login_form = model_form(Login, field_args={'password': {'password': True}})
@@ -12,6 +13,7 @@ modify_form = model_form(ModifyProfile)
 
 @app.route('/')
 def home():
+    # add search bar
     # paginate queryset
     return render_template('home.html', users=User.objects, log=log)
 
@@ -20,8 +22,7 @@ def home():
 def sign_up():
     form = signup_form(request.form)
     if request.method == 'POST' and form.validate():
-        hashed = generate_password_hash(form.password.data, method='sha256')
-        user = User(name=form.name.data, email=form.email.data, password=hashed)
+        user = User(name=form.name.data, email=form.email.data, password=log.encrypt(form.password.data))
         try:
             user.save()
         except NotUniqueError:
@@ -36,11 +37,15 @@ def login():
     form = login_form(request.form)
     if request.method == 'POST' and form.validate():
         user = User.objects(email=form.email.data).first()
-        if user and check_password_hash(user['password'], form.password.data):
-            log.set_user(user)
+        if user:
+            log.authenticate(user, form.password.data)
             next = request.args.get('next')
-            if next:
-                return redirect(url_for(next))
+            if next and bool(re.search('[a-z]+_?[a-z]*', next)):
+                try:
+                    url = url_for(next)
+                except BuildError:
+                    url = url_for('home')
+                return redirect(url)
             return redirect(url_for('home'))
         else:
             return redirect(url_for('login'))
