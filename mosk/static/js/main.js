@@ -32,22 +32,12 @@ function toggle_delete(toggle) {
 }
 
 const d_btn = document.getElementById('delete-btn');
+let toggle = 0;
 if (d_btn) {
-  let toggle = 0;
   d_btn.addEventListener('click', () => toggle = toggle_delete(toggle));
-  d_btn.addEventListener('keypress', e => {
-    if (e.keyCode == 13) {
-      toggle = toggle_delete(toggle);
-    }
-  });
 }
 
 const confirm =  document.getElementById('confirm');
 if (confirm) {
   confirm.addEventListener('click', () => delete_user());
-  confirm.addEventListener('keyPress', e => {
-    if (e.keyCode == 13) {
-      delete_user();
-    }
-  });
 }
