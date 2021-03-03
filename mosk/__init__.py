@@ -8,6 +8,8 @@ log = LoginHandler()
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 db.init_app(app)
+log.init_app(app)
 
 from mosk import views
