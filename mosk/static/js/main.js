@@ -22,7 +22,6 @@ function delete_user() {
 
 function toggle_delete(toggle) {
   const hidden =  document.getElementById('delete');
-  hidden.style.marginTop = '2rem';
   if (toggle) {
     hidden.style.display = 'none';
     return 0;
