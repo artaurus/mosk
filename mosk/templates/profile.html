@@ -9,8 +9,8 @@
 {{ log.get_user()['email'] }}
 <br><br><br>
 
-<a href="{{ url_for('home') }}" class='btn'>Home</a>
-<a href="{{ url_for('modify') }}" class='btn'>Modify</a>
+<a href="{{ url_for('gen.home') }}" class='btn'>Home</a>
+<a href="{{ url_for('users.modify') }}" class='btn'>Modify</a>
 <input id='delete-btn' type='button' value='Delete' class='btn'>
 
 <form onsubmit='event.preventDefault();' id='delete' class='hidden'>

@@ -15,11 +15,11 @@
 </table>
 <nav>
   {% if log.status() %}
-    <a href="{{ url_for('profile') }}" class='btn'>Profile</a>
-    <a href="{{ url_for('logout') }}" class='btn'>Logout</a>
+    <a href="{{ url_for('users.profile') }}" class='btn'>Profile</a>
+    <a href="{{ url_for('users.logout') }}" class='btn'>Logout</a>
   {% else %}
-    <a href="{{ url_for('sign_up') }}" class='btn'>Sign Up</a>
-    <a href="{{ url_for('login') }}" class='btn'>Login</a>
+    <a href="{{ url_for('users.sign_up') }}" class='btn'>Sign Up</a>
+    <a href="{{ url_for('users.login') }}" class='btn'>Login</a>
   {% endif %}
 </nav>
 {% endblock content %}
