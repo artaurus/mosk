@@ -27,7 +27,7 @@ class LoginHandler:
     def _write_json(self, user=None):
         if not self._path:
             if self._app:
-                self._path = self._app + url_for('static', filename='js/user.json')
+                self._path = self._app + url_for('users.static', filename='js/user.json')
             else:
                 return
         try:
@@ -62,7 +62,8 @@ class LoginHandler:
     def access_required(self, func):
         def wrapper(*args, **kwargs):
             if not self.status():
-                return redirect(url_for('login', next=url_for(func.__name__)[1:]))
+                # need fixing for more blueprints
+                return redirect(url_for('login', next=url_for('users.'+func.__name__)[1:]))
             return func(*args, **kwargs)
         wrapper.__name__ = func.__name__
         return wrapper
