@@ -12,7 +12,7 @@ function delete_user() {
     .then(response => response.json())
     .then(user => {
       if (email.value == user.email) {
-        location.pathname = '/delete'
+        location.pathname = '/profile/delete'
       } else {
         location.reload()
       }
