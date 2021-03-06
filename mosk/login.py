@@ -63,7 +63,7 @@ class LoginHandler:
         def wrapper(*args, **kwargs):
             if not self.status():
                 # need fixing for more blueprints
-                return redirect(url_for('login', next=url_for('users.'+func.__name__)[1:]))
+                return redirect(url_for('users.login', next=url_for('users.'+func.__name__)[1:]))
             return func(*args, **kwargs)
         wrapper.__name__ = func.__name__
         return wrapper
