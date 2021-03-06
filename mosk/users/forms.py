@@ -1,14 +1,29 @@
-from mosk import db
+from wtforms import Form, StringField, PasswordField
+from wtforms.validators import InputRequired, Length, Email, Regexp, ValidationError
+from ..models import User
+from .. import log
 
-class SignUp(db.Document):
-    name = db.StringField(required=True, min_length=3, max_length=20)
-    email = db.EmailField(required=True, unique=True, min_length=3, max_length=40)
-    password = db.StringField(required=True, min_length=3, max_length=20)
+class Unique:
+    def __init__(self, model, message=None):
+        self.model = model
+        self.message = message if message else 'Already exists in the database.'
 
-class Login(db.Document):
-    email = db.EmailField(required=True, min_length=3, max_length=40)
-    password = db.StringField(required=True, min_length=3, max_length=20)
+    def __call__(self, form, field):
+        if self.model.objects(__raw__={field.name: field.data}).first():
+            if log.status() and field.data == log.get_user()['email']:
+                pass
+            else:
+                raise ValidationError(self.message)
 
-class ModifyProfile(db.Document):
-    name = db.StringField(required=True, min_length=3, max_length=20)
-    email = db.EmailField(required=True, unique=True, min_length=3, max_length=40)
+class SignUpForm(Form):
+    name = StringField(label='Name', validators=[InputRequired(), Length(min=3, max=25), Regexp('^[a-zA-Z]+( ?-?[a-zA-Z]+)*$')])
+    email = StringField(label='Email', validators=[Email(), InputRequired(), Length(min=3, max=40), Unique(User)])
+    password = PasswordField(label='Password', validators=[InputRequired(), Length(min=3, max=20), Regexp('^[a-zA-Z0-9_]+$')])
+
+class LoginForm(Form):
+    email = StringField(label='Email', validators=[Email(), InputRequired(), Length(min=3, max=40)])
+    password = PasswordField(label='Password', validators=[InputRequired(), Length(min=3, max=20), Regexp('^[a-zA-Z0-9_]+$')])
+
+class ModifyProfileForm(Form):
+    name = StringField(label='Name', validators=[InputRequired(), Length(min=3, max=25), Regexp('^[a-zA-Z]+( ?-?[a-zA-Z]+)*$')])
+    email = StringField(label='Email', validators=[Email(), InputRequired(), Length(min=3, max=40), Unique(User)])
