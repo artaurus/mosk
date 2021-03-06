@@ -1,24 +1,19 @@
 from flask import Flask, Blueprint, render_template, redirect, request, url_for
 from flask_mongoengine.wtf import model_form
 from werkzeug.routing import BuildError
-from mongoengine.errors import NotUniqueError
 import re
 from .. import db, log
 from ..models import User
 from . import users
-from .forms import SignUp, Login, ModifyProfile
+from .forms import SignUpForm, LoginForm, ModifyProfileForm
 
 @users.route('/sign-up', methods=['GET', 'POST'])
 @log.access_denied
 def sign_up():
-    signup_form = model_form(SignUp, field_args={'password': {'password': True}})
-    form = signup_form(request.form)
+    form = SignUpForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User(name=form.name.data, email=form.email.data, password=log.encrypt(form.password.data))
-        try:
-            user.save()
-        except NotUniqueError:
-            return redirect(url_for('users.sign_up'))
+        user.save()
         log.set_user(user)
         return redirect(url_for('gen.home'))
     return render_template('sign_up.html', title='Sign Up', form=form)
@@ -26,8 +21,7 @@ def sign_up():
 @users.route('/login', methods=['GET', 'POST'])
 @log.access_denied
 def login():
-    login_form = model_form(Login, field_args={'password': {'password': True}})
-    form = login_form(request.form)
+    form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User.objects(email=form.email.data).first()
         if user:
@@ -35,7 +29,6 @@ def login():
             next = request.args.get('next')
             if next and re.search('^[a-z]+(_?[a-z]+)*$', next):
                 try:
-                    # needs fixing for more blueprints
                     url = url_for('users.'+next)
                 except BuildError:
                     url = url_for('gen.home')
@@ -50,23 +43,19 @@ def login():
 def profile():
     return render_template('profile.html', title='Profile', log=log)
 
-@users.route('/modify', methods=['GET', 'POST'])
+@users.route('/profile/modify', methods=['GET', 'POST'])
 @log.access_required
-def modify():
-    modify_form = model_form(ModifyProfile)
-    form = modify_form(request.form)
+def modify_profile():
+    form = ModifyProfileForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User.objects(email=log.get_user()['email']).first()
         user.name = form.name.data
         user.email = form.email.data
-        try:
-            user.save()
-        except NotUniqueError:
-            return redirect(url_for('users.modify'))
+        user.save()
         log.reset_user()
         log.set_user(user)
         return redirect(url_for('users.profile'))
-    return render_template('modify.html', title='Modify Profile', form=form, log=log)
+    return render_template('modify_profile.html', title='Modify Profile', form=form, log=log)
 
 @users.route('/logout')
 @log.access_required
@@ -74,7 +63,7 @@ def logout():
     log.reset_user()
     return redirect(url_for('gen.home'))
 
-@users.route('/delete')
+@users.route('/profile/delete')
 @log.access_required
 def delete():
     User.objects(email=log.get_user()['email']).first().delete()
