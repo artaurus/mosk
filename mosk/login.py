@@ -71,7 +71,7 @@ class LoginHandler:
     def access_denied(self, func):
         def wrapper(*args, **kwargs):
             if self.status():
-                return redirect('/')
+                return redirect(url_for('gen.home'))
             return func(*args, **kwargs)
         wrapper.__name__ = func.__name__
         return wrapper
