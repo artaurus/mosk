@@ -14,9 +14,11 @@ def init_app():
     log.init_app(app)
 
     with app.app_context():
-        from mosk.gen import gen
-        from mosk.users import users
+        from .gen import gen
+        from .users import users
+        from .errors import errors
         app.register_blueprint(gen)
         app.register_blueprint(users)
+        app.register_blueprint(errors)
 
         return app
