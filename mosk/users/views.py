@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, abort
 from flask_mongoengine.wtf import model_form
 from werkzeug.routing import BuildError
 import re
@@ -31,7 +31,7 @@ def login():
                 try:
                     url = url_for('users.'+next)
                 except BuildError:
-                    url = url_for('gen.home')
+                    abort(404)
                 return redirect(url)
             return redirect(url_for('gen.home'))
         else:
