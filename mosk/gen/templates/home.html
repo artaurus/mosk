@@ -6,6 +6,11 @@
 {% endblock meta %}
 
 {% block content %}
+  <form action='' method='GET'>
+    <input name='search' placeholder='Search' type='text'>
+    <a href="{{ url_for('gen.home') }}" class='btn'>Reset</a>
+  </form>
+
   <table>
     <tr>
       <th>Name</th>
