@@ -1,0 +1,17 @@
+{% macro render_pagin(object, endpoint, class_='') %}
+  {% if object.total > object.per_page %}
+    <ul class='{{ class_ }}'>
+    	{% if object.has_prev %}
+    		<li><a href="{{ url_for(endpoint, page=object.page-1) }}">{{ object.page-1 }}</a></li>
+      {% else %}
+        <li></li>
+    	{% endif %}
+  		<li><span><b>{{ object.page }}</b></span></li>
+    	{% if object.has_next %}
+    		<li><a href="{{ url_for(endpoint, page=object.page+1) }}">{{ object.page+1 }}</a></li>
+      {% else %}
+        <li></li>
+    	{% endif %}
+    </ul>
+  {% endif %}
+{% endmacro %}
