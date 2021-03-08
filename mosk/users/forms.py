@@ -1,5 +1,5 @@
 from wtforms import Form, StringField, PasswordField
-from wtforms.validators import InputRequired, Length, Email, Regexp, ValidationError
+from wtforms.validators import InputRequired, Length, Email, Regexp, EqualTo, ValidationError
 from ..models import User
 from .. import log
 
@@ -19,6 +19,7 @@ class SignUpForm(Form):
     name = StringField(label='Name', validators=[InputRequired(), Length(min=3, max=25), Regexp('^[a-zA-Z]+( ?-?[a-zA-Z]+)*$')])
     email = StringField(label='Email', validators=[Email(), InputRequired(), Length(min=3, max=40), Unique(User)])
     password = PasswordField(label='Password', validators=[InputRequired(), Length(min=3, max=20), Regexp('^[a-zA-Z0-9_]+$')])
+    confirm_password = PasswordField(label='Confirm password', validators=[EqualTo('password')])
 
 class LoginForm(Form):
     email = StringField(label='Email', validators=[Email(), InputRequired(), Length(min=3, max=40)])
