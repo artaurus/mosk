@@ -10,6 +10,7 @@
     {{ render_field(form.name) }}
     {{ render_field(form.email) }}
     {{ render_field(form.password) }}
+    {{ render_field(form.confirm_password)}}
 
     <a href="{{ url_for('gen.home') }}" class='btn'>Back</a>
     <input type='submit' value='Sign Up' class='btn'>
