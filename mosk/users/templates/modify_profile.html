@@ -7,8 +7,8 @@
   <form action='' method='POST'>
     {{ form.csrf_token }}
 
-    {{ render_field(form.name, log.get_user()['name']) }}
-    {{ render_field(form.email, log.get_user()['email']) }}
+    {{ render_field(form.name, log.get_user('name')) }}
+    {{ render_field(form.email, log.get_user('email')) }}
 
     <a href="{{ url_for('users.profile') }}" class='btn'>Back</a>
     <input type='submit' value='Update' class='btn'>
