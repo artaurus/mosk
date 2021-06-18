@@ -1,0 +1,13 @@
+{% macro render_field(field) %}
+<div class='form-element'>
+  {{ field.label }}<br>
+  {% if field.errors %}
+  {{ field(class='input-error') }}
+  {% else %}
+  {{ field }}
+  {% endif %}
+  <div class='field-error'>
+    <span id='{{ field.name }}-error'>{{ field.errors[0] }}</span><br>
+  </div>
+</div>
+{% endmacro %}
