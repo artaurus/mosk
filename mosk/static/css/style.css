@@ -10,13 +10,21 @@ body {
 
 header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
 }
 
+nav {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
 nav a {
   padding: 0.5rem 1rem;
+  border-bottom: #ccc solid 1px;
 }
 
 nav a:hover {
@@ -38,7 +46,7 @@ a {
 #flash {
   position: absolute;
   top: 20px;
-  width: 40vw;
+  width: 90vw;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
@@ -52,4 +60,18 @@ a {
   font-size: 20px;
   color: #d11a2a;
   cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+  header {
+    flex-direction: row;
+  }
+
+  nav {
+    margin: 0;
+  }
+
+  #flash {
+    width: 40vw;
+  }
 }

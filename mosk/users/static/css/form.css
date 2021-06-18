@@ -5,11 +5,10 @@
 }
 
 form {
-  width: 600px;
+  width: 100%;
   border: var(--grey) solid 1px;
   box-shadow: 0 0 10px var(--grey);
   border-radius: 10px;
-  padding: 40px;
 }
 
 fieldset {
@@ -26,7 +25,7 @@ legend {
 }
 
 .form-element {
-  width: 80%;
+  width: 100%;
   margin-bottom: 1rem;
 }
 
@@ -87,4 +86,15 @@ button:focus {
   font-size: 14px;
   text-align: center;
   color: var(--red);
+}
+
+@media screen and (min-width: 600px) {
+  form {
+    width: 600px;
+    padding: 40px;
+  }
+
+  .form-element {
+    width: 80%;
+  }
 }

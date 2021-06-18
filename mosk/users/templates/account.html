@@ -7,9 +7,10 @@
 {% block content %}
   <section>
     {% if not um.get_user('verified') %}
-    <div>
-      <span>Your account is not verified.<a href="{{ url_for('users.verify1') }}" class='btn'>Request a new verification link.</a></span>
-    </div>
+    <div id='verify'>
+      <span>Your account is not verified.</span><br><br>
+      <a href="{{ url_for('users.verify1') }}" class='btn'>Request a new verification link.</a>
+    </div><br>
     {% endif %}
 
     <h2>Account</h2>
