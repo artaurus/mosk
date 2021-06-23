@@ -1,5 +1,5 @@
 const getUser = () =>
-  fetch('/account/users/static/js/user.json')
+  fetch('/account/users/static/js/user.json', {cache: 'no-cache'})
     .then(response => response.json());
 
 const sign_up = document.forms['sign-up'];

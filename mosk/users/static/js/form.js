@@ -6,10 +6,10 @@ function _length(field, min, max) {
   }
 }
 
-function _fail(e) {
+function _fail(field) {
   var red = '#d11a2a';
-  e.style.border = `${red} solid 1px`;
-  e.style.boxShadow = `0 0 2px ${red}`;
+  field.style.border = `${red} solid 1px`;
+  field.style.boxShadow = `0 0 2px ${red}`;
   return false;
 }
 
