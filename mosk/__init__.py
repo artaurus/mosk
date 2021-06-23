@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_mongoengine import MongoEngine
+from pymongo import MongoClient
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 from mosk.config import Config
@@ -8,7 +8,8 @@ from mosk.manager import UserManager
 app = Flask(__name__)
 app.config.from_object(Config)
 
-db = MongoEngine(app)
+client = MongoClient(app.config['MONGODB_URI'])
+db = client.mosk
 bcrypt = Bcrypt(app)
 mail = Mail(app)
 um = UserManager(app)

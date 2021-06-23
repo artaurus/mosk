@@ -1,4 +1,5 @@
 from flask import redirect, url_for
+import json
 
 class UserManager:
     def __init__(self, app):
@@ -12,11 +13,11 @@ class UserManager:
 
     def set_user(self, user):
         if not self.status():
-            del user.id
-            del user.password
+            user.pop('_id', None)
+            user.pop('password', None)
             self._user = user
             with open(self._path, 'w') as file:
-                file.write(user.to_json())
+                file.write(json.dumps(user, indent=4, default=str))
 
     def get_user(self, attr=None):
         if attr:

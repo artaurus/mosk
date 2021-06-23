@@ -1,21 +1,20 @@
 from wtforms import Form, StringField, PasswordField
 from wtforms.validators import Length, Email, Regexp, EqualTo, ValidationError
-from mosk import um
-from mosk.users.models import User
+from mosk import db, um
 
 def input_required(form, field):
     if len(field.data) == 0:
         raise ValidationError('')
 
 def unique(form, field):
-    if User.objects(email=field.data).first():
+    if db.users.find_one({'email': field.data}):
         if um.status() and field.data == um.get_user('email'):
             pass
         else:
             raise ValidationError('Already exists in our database.')
 
 def not_registered(form, field):
-    if not User.objects(email=field.data).first():
+    if not db.users.find_one({'email': field.data}):
         raise ValidationError('Does not exist in our database.')
 
 class SignUpForm(Form):
