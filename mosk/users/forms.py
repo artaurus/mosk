@@ -18,20 +18,104 @@ def not_registered(form, field):
         raise ValidationError('Does not exist in our database.')
 
 class SignUpForm(Form):
-    email = StringField(label='Email address', validators=[input_required, unique, Length(min=5, max=254), Regexp('^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-\.]+\.[a-zA-Z]+$')])
-    password = PasswordField(label='Password', validators=[input_required, Length(min=8, max=20), Regexp('^[a-zA-Z0-9_]+$')])
-    confirm_password = PasswordField(label='Confirm password', validators=[EqualTo('password')])
+    email = StringField(
+        label='Email address',
+        validators=[
+            input_required,
+            Length(min=4, max=254),
+            Regexp(
+                '^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-\.]+$',
+                message='Invalid email address.'
+            ),
+            unique
+        ]
+    )
+    password = PasswordField(
+        label='Password',
+        validators=[
+            input_required,
+            Length(min=8, max=20),
+            Regexp(
+                '^[a-zA-Z0-9_]+$',
+                message='Invalid password.'
+            )
+        ]
+    )
+    confirm_password = PasswordField(
+        label='Confirm password',
+        validators=[
+            EqualTo('password')
+        ]
+    )
 
 class LoginForm(Form):
-    email = StringField(label='Email address', validators=[input_required, not_registered, Length(min=5, max=254), Regexp('^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-\.]+\.[a-zA-Z]+$')])
-    password = PasswordField(label='Password', validators=[input_required, Length(min=8, max=20), Regexp('^[a-zA-Z0-9_]+$')])
+    email = StringField(
+        label='Email address',
+        validators=[
+            input_required,
+            Length(min=4, max=254),
+            Regexp(
+                '^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-\.]+$',
+                message='Invalid email address.'
+            ),
+            not_registered
+        ]
+    )
+    password = PasswordField(
+        label='Password',
+        validators=[
+            input_required,
+            Length(min=8, max=20),
+            Regexp(
+                '^[a-zA-Z0-9_]+$',
+                message='Invalid password.'
+            )
+        ]
+    )
 
 class EditProfileForm(Form):
-    email = StringField(label='Email address', validators=[input_required, unique, Length(min=5, max=254), Regexp('^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-\.]+\.[a-zA-Z]+$')])
+    email = StringField(
+        label='Email address',
+        validators=[
+            input_required,
+            Length(min=4, max=254),
+            Regexp(
+                '^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-\.]+$',
+                message='Invalid email address.'
+            ),
+            unique
+        ]
+    )
 
 class EmailForm(Form):
-    email = StringField(label='Email address', validators=[input_required, not_registered, Length(min=5, max=254), Regexp('^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-\.]+\.[a-zA-Z]+$')])
+    email = StringField(
+        label='Email address',
+        validators=[
+            input_required,
+            Length(min=4, max=254),
+            Regexp(
+                '^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-\.]+$',
+                message='Invalid email address.'
+            ),
+            not_registered
+        ]
+    )
 
 class ResetPasswordForm(Form):
-    password = PasswordField(label='New password', validators=[input_required, Length(min=8, max=20), Regexp('^[a-zA-Z0-9_]+$')])
-    confirm_password = PasswordField(label='Confirm password', validators=[EqualTo('password')])
+    password = PasswordField(
+        label='Password',
+        validators=[
+            input_required,
+            Length(min=8, max=20),
+            Regexp(
+                '^[a-zA-Z0-9_]+$',
+                message='Invalid password.'
+            )
+        ]
+    )
+    confirm_password = PasswordField(
+        label='Confirm password',
+        validators=[
+            EqualTo('password')
+        ]
+    )
