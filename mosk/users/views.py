@@ -61,12 +61,8 @@ def sign_up():
 def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = db.users.find_one({'email': form.email.data})
-        if bcrypt.check_password_hash(user['password'], form.password.data):
-            um.set_user(user)
-            return redirect(url_for('users.account'))
-        else:
-            return redirect(url_for('users.login'))
+        um.set_user(db.users.find_one({'email': form.email.data}))
+        return redirect(url_for('users.account'))
     return render_template(
         'login.html',
         title='Login',
