@@ -6,33 +6,27 @@
 
 form {
   width: 100%;
-  border: var(--grey) solid 1px;
-  box-shadow: 0 0 10px var(--grey);
-  border-radius: 10px;
 }
 
 fieldset {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   border: none;
 }
 
 legend {
   text-align: center;
-  margin-bottom: 10px;
 }
 
 .form-element {
   width: 100%;
-  margin-bottom: 1rem;
 }
 
 input {
   width: 100%;
-  margin: 5px 0;
-  padding: 0.5rem 1rem;
+  padding: 10px 20px;
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -46,7 +40,7 @@ input:focus {
   box-shadow: 0 0 2px var(--blue);
 }
 
-button {
+.btn {
   padding: 10px 20px;
   color: inherit;
   background-color: inherit;
@@ -54,14 +48,20 @@ button {
   font-size: inherit;
   border: var(--grey) solid 1px;;
   border-radius: 5px;
+  box-shadow: 0 0 5px var(--grey);
 }
 
-button:hover,
-button:focus {
+.btn:hover,
+.btn:focus {
   outline: none;
   box-shadow: 0 0 5px var(--grey);
   cursor: pointer;
   transition: 200ms;
+}
+
+.link {
+  padding: 10px 0;
+  color: var(--red);
 }
 
 .form-flex {
@@ -71,18 +71,12 @@ button:focus {
   align-items: center;
 }
 
-.form-link {
-  padding: 10px 0;
-  color: var(--red);
-}
-
-.input-error {
+.form-error {
   border: var(--red) solid 1px;
   box-shadow: 0 0 2px var(--red);
 }
 
-.field-error {
-  margin-right: 0.5rem;
+.form-error-desc {
   font-size: 14px;
   text-align: center;
   color: var(--red);
@@ -92,9 +86,16 @@ button:focus {
   form {
     width: 600px;
     padding: 40px;
+    border: var(--grey) solid 1px;
+    box-shadow: 0 0 10px var(--grey);
+    border-radius: 10px;
   }
 
   .form-element {
     width: 80%;
+  }
+
+  .btn {
+    box-shadow: none;
   }
 }

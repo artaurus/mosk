@@ -1,27 +1,5 @@
-#verify {
+#account {
   text-align: center;
-}
-
-.btn {
-  padding: 10px 20px;
-  color: inherit;
-  background-color: inherit;
-  font-family: inherit;
-  font-size: inherit;
-  border: #ccc solid 1px;;
-  border-radius: 5px;
-}
-
-.btn:hover,
-.btn:focus {
-  outline: none;
-  box-shadow: 0 0 5px #ccc;
-  cursor: pointer;
-  transition: 200ms;
-}
-
-.btns {
-  margin-top: 40px;
 }
 
 #danger {
