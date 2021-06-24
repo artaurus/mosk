@@ -2,11 +2,11 @@
 <div class='form-element'>
   {{ field.label }}<br>
   {% if field.errors %}
-  {{ field(class='input-error') }}
+  {{ field(class='form-error') }}
   {% else %}
   {{ field }}
   {% endif %}
-  <div class='field-error'>
+  <div class='form-error-desc'>
     <span id='{{ field.name }}-error'>{{ field.errors[0] }}</span><br>
   </div>
 </div>
