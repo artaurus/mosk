@@ -38,9 +38,10 @@
     <main>
       {% with messages = get_flashed_messages() %}
       {% if messages %}
-      <div id='flash'>
-        <span>{{ messages[0] }} <span id='cross'>&Cross;</span></span>
-      </div>
+      <p id='flash'>
+        <span>{{ messages[0] }}</span>
+        <span id='hide-flash'>&Cross;</span>
+      </p>
       {% endif %}
       {% endwith %}
 
