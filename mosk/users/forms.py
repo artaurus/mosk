@@ -1,5 +1,5 @@
 from wtforms import Form, StringField, PasswordField
-from wtforms.validators import Length, Email, Regexp, EqualTo, ValidationError
+from wtforms.validators import Length, Regexp, EqualTo, ValidationError
 from mosk import db, um, bcrypt
 
 def required(form, field):
