@@ -2,21 +2,22 @@
 
 {% block meta %}
   <link href="{{ url_for('users.static', filename='css/style.css') }}" rel='stylesheet' type='text/css'>
+  <link href="{{ url_for('users.static', filename='css/form.css') }}" rel='stylesheet' type='text/css'>
 {% endblock meta %}
 
 {% block content %}
-  <section>
+  <section id='account'>
     {% if not um.get_user('verified') %}
-    <div id='verify'>
-      <span>Your account is not verified.</span><br><br>
+    <div>
+      <p>Your account is not verified.</p>
       <a href="{{ url_for('users.verify1') }}" class='btn'>Request a new verification link.</a>
     </div><br>
     {% endif %}
 
     <h2>Account</h2>
-    <span>{{ um.get_user('email') }}</span><br>
+    <p>{{ um.get_user('email') }}</p>
 
-    <div class='btns'>
+    <div>
       <a href="{{ url_for('users.edit_account') }}" class='btn'>Edit</a>
       <a href="{{ url_for('users.delete1') }}" class='btn' id='danger'>Delete</a>
     </div>
