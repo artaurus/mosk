@@ -2,7 +2,6 @@
 
 {% block meta %}
   <link href="{{ url_for('users.static', filename='css/style.css') }}" rel='stylesheet' type='text/css'>
-  <link href="{{ url_for('users.static', filename='css/form.css') }}" rel='stylesheet' type='text/css'>
 {% endblock meta %}
 
 {% block content %}
@@ -15,7 +14,7 @@
     {% endif %}
 
     <h2>Account</h2>
-    <p>{{ um.get_user('email') }}</p>
+    <p>{{ um.get_user('email') }}</p><br>
 
     <div>
       <a href="{{ url_for('users.edit_account') }}" class='btn'>Edit</a>
