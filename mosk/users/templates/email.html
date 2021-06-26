@@ -2,18 +2,16 @@
 {% from '_form_field.html' import render_field %}
 
 {% block meta %}
-  <link href="{{ url_for('users.static', filename='css/form.css') }}" rel='stylesheet' type='text/css'>
+  <link href="{{ url_for('users.static', filename='css/forms.css') }}" rel='stylesheet' type='text/css'>
 {% endblock meta %}
 
 {% block content %}
-  <form action="{{ url_for('users.reset_password1') }}" method='POST' autocomplete='off'>
-    <fieldset>
-      <legend><h2>Request Password Reset</h2></legend>
+  <section class='form'>
+    <form action="{{ url_for('users.reset_password1') }}" method='POST' autocomplete='off'>
+      <h2>Request Password Reset</h2>
       {{ form.csrf_token }}
-
       {{ render_field(form.email) }}
-
       <button type='submit' class='btn'>Submit</button>
-    </fieldset>
-  </form>
+    </form>
+  </section>
 {% endblock content %}
