@@ -1,10 +1,4 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
-  color: #000;
-  background-color: #fff;
   font-family: Quicksand, Calibri;
 }
 
@@ -14,6 +8,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  height: 15vh;
 }
 
 nav {
@@ -33,18 +28,33 @@ nav a:hover {
 
 main {
   line-height: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 h2 {
   font-weight: normal;
 }
 
-a {
-  text-decoration: none;
+.small {
+  font-size: 14px;
+}
+
+.btn {
+  padding: 10px 20px;
   color: inherit;
+  background-color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  border: #ccc solid 1px;;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ccc;
+}
+
+.btn:hover,
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 5px #ccc;
+  cursor: pointer;
+  transition: 200ms;
 }
 
 #flash {
@@ -73,9 +83,14 @@ a {
 @media screen and (min-width: 600px) {
   header {
     flex-direction: row;
+    height: 10vh;
   }
 
   nav {
     margin: 0;
+  }
+
+  .btn {
+    box-shadow: none;
   }
 }
