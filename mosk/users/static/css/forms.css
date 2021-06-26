@@ -1,0 +1,83 @@
+:root {
+  --red: #d11a2a;
+  --blue: #24a0ed;
+  --grey: #ccc;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+form h2 {
+  margin-bottom: 10px;
+}
+
+div.form-element {
+  width: 100%;
+}
+
+input[type='text'],
+input[type='password'],
+textarea {
+  width: 100%;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: var(--grey) solid 1px;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+  line-height: 1.5;
+}
+
+input[type='text']:focus,
+input[type='password']:focus,
+textarea:focus {
+  outline: none;
+  border: var(--blue) solid 1px;
+  box-shadow: 0 0 2px var(--blue);
+}
+
+a.link {
+  padding: 10px 0;
+  color: var(--red);
+}
+
+div.fields-flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+input.form-error {
+  border: var(--red) solid 1px;
+  box-shadow: 0 0 2px var(--red);
+}
+
+div.form-error-desc {
+  text-align: center;
+  color: var(--red);
+}
+
+@media screen and (min-width: 600px) {
+  form {
+    max-width: 400px;
+  }
+}
