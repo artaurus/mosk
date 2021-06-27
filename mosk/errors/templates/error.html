@@ -1,5 +1,9 @@
 {% extends '_base.html' %}
 
+{% block meta %}
+    <link rel='stylesheet' href="{{ url_for('errors.static', filename='style.css') }}" type='text/css'>
+{% endblock meta %}
+
 {% block content %}
 <div id='http-error'>
   <h2>{{ error.code }}: {{ error.name }}</h2>
