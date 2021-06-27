@@ -3,5 +3,5 @@
 }
 
 #danger {
-  color: #d11a2a;
+  color: var(--red);
 }

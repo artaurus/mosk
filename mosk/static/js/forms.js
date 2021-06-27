@@ -1,10 +1,12 @@
 class Form {
   constructor(form) {
-    this.form = form;
+    this.form = document.forms[form];
+    this.green = '#00ab66';
+    this.red = '#d11a2a';
   }
 
   _length(field, min, max) {
-    if (field.value.trim().length < min || field.value.trim().length > max) {
+    if (field.value.trim().length < min || field.value.length > max) {
       return false;
     } else {
       return true;
@@ -12,18 +14,27 @@ class Form {
   }
 
   _pass(field) {
-    var green = '#00ab66';
-    field.style.border = `${green} solid 1px`;
-    field.style.boxShadow = `0 0 2px ${green}`;
+    field.style.padding = '9px 19px';
+    field.style.border = `${this.green} solid 2px`;
     document.getElementById(`${field.name}-error`).innerText = '';
     return true;
   }
 
   _fail(field) {
-    var red = '#d11a2a';
-    field.style.border = `${red} solid 1px`;
-    field.style.boxShadow = `0 0 2px ${red}`;
+    field.style.padding = '9px 19px';
+    field.style.border = `${this.red} solid 2px`;
     return false;
+  }
+
+  required(fields) {
+    this.form.addEventListener('submit', () => {
+      fields.forEach(field => {
+        if (!this.form[field].value.length) {
+          var u = this._fail(this.form[field]);
+          event.preventDefault();
+        }
+      });
+    });
   }
 
   validate(validators) {
