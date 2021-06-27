@@ -1,25 +1,30 @@
+:root {
+  --red: #d11a2a;
+  --blue: #187890;
+  --grey: #ccc;
+}
+
 body {
-  font-family: Quicksand, Calibri;
+  font-family: Quicksand, ui-sans-serif;
 }
 
 header {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 0 20px;
   height: 15vh;
 }
 
-nav {
-  margin-bottom: 20px;
+nav ul {
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
 
 nav a {
   padding: 0.5rem 1rem;
-  border-bottom: #ccc solid 1px;
+  border-bottom: var(--grey) solid 1px;
 }
 
 nav a:hover {
@@ -40,21 +45,19 @@ h2 {
 
 .btn {
   padding: 10px 20px;
-  color: inherit;
-  background-color: inherit;
   font-family: inherit;
   font-size: inherit;
-  border: #ccc solid 1px;;
-  border-radius: 5px;
-  box-shadow: 0 0 5px #ccc;
+  color: inherit;
+  background-color: inherit;
+  border: var(--grey) solid 1px;
 }
 
 .btn:hover,
 .btn:focus {
   outline: none;
-  box-shadow: 0 0 5px #ccc;
   cursor: pointer;
-  transition: 200ms;
+  padding: 9px 19px;
+  border: var(--blue) solid 2px;
 }
 
 #flash {
@@ -67,30 +70,27 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: #ccc solid 1px;
+  border: var(--grey) solid 1px;
   border-radius: 10px;
-  box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px var(--grey);
   background-color: #fff;
 }
 
 #hide-flash {
   margin-left: 20px;
   font-size: 20px;
-  color: #d11a2a;
+  color: var(--red);
   cursor: pointer;
 }
 
 @media screen and (min-width: 600px) {
   header {
     flex-direction: row;
+    justify-content: space-between;
     height: 10vh;
   }
 
   nav {
     margin: 0;
-  }
-
-  .btn {
-    box-shadow: none;
   }
 }
