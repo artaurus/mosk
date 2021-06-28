@@ -29,23 +29,23 @@ var confirm_password = {
 const route = window.location.pathname.split('/');
 switch (route[2]) {
   case 'sign_up':
-    new Form('sign-up').validate([email, password, confirm_password]);
+    new Form('sign-up-form').validate([email, password, confirm_password]);
     break;
 
   case 'login':
-    new Form('login').required(['email', 'password']);
+    new Form('login-form').required(['email', 'password']);
     break;
 
   case 'edit':
     getUser().then(user => {
       email.default = user.email;
-      new Form('edit-account').validate([email]);
+      new Form('edit-account-form').validate([email]);
     });
     break;
 
   case 'reset_password':
     if (route[3]) {
-      new Form('reset-password').validate([password, confirm_password]);
+      new Form('reset-password-form').validate([password, confirm_password]);
       break;
     } else {
       new Form('email-form').required(['email']);

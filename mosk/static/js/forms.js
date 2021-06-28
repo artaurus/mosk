@@ -1,6 +1,6 @@
 class Form {
-  constructor(form) {
-    this.form = document.forms[form];
+  constructor(form_id) {
+    this.form = document.getElementById(form_id);
     this.green = '#00ab66';
     this.red = '#d11a2a';
   }
@@ -29,8 +29,8 @@ class Form {
   required(fields) {
     this.form.addEventListener('submit', () => {
       fields.forEach(field => {
-        if (!this.form[field].value.length) {
-          var u = this._fail(this.form[field]);
+        if (!this.form.elements[field].value.length) {
+          var u = this._fail(this.form.elements[field]);
           event.preventDefault();
         }
       });
@@ -43,15 +43,15 @@ class Form {
       flags[i] = !validators[i]['required'];
     }
 
-    validators.forEach((fv, i) => {
-      var field = this.form[fv['name']];
-      if (fv['default']) {
-        field.value = fv['default'];
+    validators.forEach((val, i) => {
+      var field = this.form.elements[val['name']];
+      if (val['default']) {
+        field.value = val['default'];
         flags[i] = this._pass(field);
       }
       field.addEventListener('change', () => {
-        var subflag1 = this._length(field, fv['length'][0], fv['length'][1]);
-        var subflag2 = fv['regex'].test(field.value);
+        var subflag1 = this._length(field, val['length'][0], val['length'][1]);
+        var subflag2 = val['regex'].test(field.value);
         if (subflag1 && subflag2) {
           flags[i] = this._pass(field);
         } else if (field.value.trim().length) {
@@ -67,10 +67,10 @@ class Form {
               document.getElementById(`${field.name}-error`).innerText = `Invalid characters in ${field.name}.`;
           }
           if (!subflag1) {
-            document.getElementById(`${field.name}-error`).innerText = `Has to be between ${fv['length'][0]} and ${fv['length'][1]} characters.`;
+            document.getElementById(`${field.name}-error`).innerText = `Has to be between ${val['length'][0]} and ${val['length'][1]} characters.`;
           }
         } else {
-          if (fv['required']) {
+          if (val['required']) {
             flags[i] = this._fail(field);
           } else {
             flags[i] = this._pass(field);
@@ -78,14 +78,14 @@ class Form {
         }
         var confirm = field.name.split('_');
         if (confirm[0] == 'confirm') {
-          if (field.value == this.form[confirm[1]].value) {
+          if (field.value == this.form.elements[confirm[1]].value) {
             flags[i] = this._pass(field);
           } else {
             flags[i] = this._fail(field);
             document.getElementById(`${field.name}-error`).innerText = `Does not match ${confirm[1]}.`;
           }
         }
-        confirm = this.form[`confirm_${field.name}`];
+        confirm = this.form.elements[`confirm_${field.name}`];
         if (confirm && confirm.value) {
           if (field.value == confirm.value) {
             flags[i+1] = this._pass(confirm);
@@ -98,8 +98,8 @@ class Form {
     });
 
     this.form.addEventListener('submit', event => {
-      validators.forEach((fv, i) => {
-        var field = this.form[fv['name']];
+      validators.forEach((val, i) => {
+        var field = this.form.elements[val['name']];
         if (flags[i]) {
           flags[i] = this._pass(field);
         } else {
