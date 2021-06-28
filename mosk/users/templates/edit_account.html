@@ -9,7 +9,7 @@
 
 {% block content %}
   <section class='form'>
-    <form action="{{ url_for('users.edit_account') }}" method='POST' autocomplete='off' name='edit-account'>
+    <form action="{{ url_for('users.edit_account') }}" method='POST' autocomplete='off' id='edit-account-form'>
       <h2>Edit</h2>
       {{ form.csrf_token }}
       {{ render_field(form.email) }}
